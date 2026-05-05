@@ -1,38 +1,32 @@
 ﻿using InterestCalculator.Domain.Services.Contracts;
-using System;
-using System.Net.Http;
 using System.Text.Json;
-using System.Threading;
-using System.Threading.Tasks;
 
-namespace InterestCalculator.Domain.Services
+namespace InterestCalculator.Domain.Services;
+
+public class InterestRateService : IInterestRateService
 {
-    public class InterestRateService : IInterestRateService
+    private readonly EndpointAddress _endpointAddress;
+
+    public InterestRateService(EndpointAddress endpointAddress) =>
+        _endpointAddress = endpointAddress;
+
+    public async Task<decimal> GetAsync(CancellationToken cancellationToken)
     {
-        private readonly EndpointAddress _endpointAddress;
-
-        public InterestRateService(EndpointAddress endpointAddress) =>
-            _endpointAddress = endpointAddress;
-
-        public async Task<decimal> GetAsync(CancellationToken cancellationToken)
+        try
         {
-            try
-            {
-                using var httpClient = new HttpClient();
-                var response = await httpClient.GetAsync(_endpointAddress.Url, cancellationToken);
-                var data = await response.Content.ReadAsStringAsync(cancellationToken);
-                var interestRate = JsonSerializer.Deserialize<decimal>(data);
-                return interestRate;
-            }
-            catch (HttpRequestException)
-
-            {
-                return 0m;
-            }
-            catch (TaskCanceledException)
-            {
-                return 0m;
-            }
+            using var httpClient = new HttpClient();
+            var response = await httpClient.GetAsync(_endpointAddress.Url, cancellationToken);
+            var data = await response.Content.ReadAsStringAsync(cancellationToken);
+            var interestRate = JsonSerializer.Deserialize<decimal>(data);
+            return interestRate;
+        }
+        catch (HttpRequestException)
+        {
+            return 0m;
+        }
+        catch (TaskCanceledException)
+        {
+            return 0m;
         }
     }
 }

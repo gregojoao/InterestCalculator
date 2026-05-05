@@ -1,10 +1,9 @@
-﻿namespace InterestCalculator.Domain.Services
-{
-    public class EndpointAddress
-    {
-        public string Url { get; private set; }
+﻿namespace InterestCalculator.Domain.Services;
 
-        public EndpointAddress(string url) =>
-            Url = url;
-    }
+public class EndpointAddress
+{
+    public string Url { get; private set; }
+
+    public EndpointAddress(string url) =>
+        Url = url;
 }

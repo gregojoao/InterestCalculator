@@ -1,7 +1,6 @@
-﻿namespace InterestCalculator.Domain.Commands.Contracts
+﻿namespace InterestCalculator.Domain.Commands.Contracts;
+
+public interface ICommand
 {
-    public interface ICommand
-    {
-        void Validate();
-    }
+    void Validate();
 }
