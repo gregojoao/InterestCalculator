@@ -1,18 +1,17 @@
-﻿namespace InterestCalculator.API.Responses
+﻿namespace InterestCalculator.API.Responses;
+
+public class RespostaRequisicao
 {
-    public class RespostaRequisicao
+    public bool Sucesso { get; set; }
+    public string Mensagem { get; set; } = string.Empty;
+    public decimal? Resultado { get; set; }
+
+    public RespostaRequisicao() { }
+
+    public RespostaRequisicao(bool sucesso, string mensagem, decimal? resultado)
     {
-        public bool Sucesso { get; set; }
-        public string Mensagem { get; set; }
-        public decimal? ValorFinal { get; set; }
-
-        public RespostaRequisicao() { }
-
-        public RespostaRequisicao(bool sucesso, string mensagem, decimal? valorFinal)
-        {
-            Sucesso = sucesso;
-            Mensagem = mensagem;
-            ValorFinal = valorFinal;
-        }
+        Sucesso = sucesso;
+        Mensagem = mensagem;
+        Resultado = resultado;
     }
 }

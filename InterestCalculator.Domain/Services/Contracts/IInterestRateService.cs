@@ -1,10 +1,6 @@
-﻿using System.Threading;
-using System.Threading.Tasks;
+﻿namespace InterestCalculator.Domain.Services.Contracts;
 
-namespace InterestCalculator.Domain.Services.Contracts
+public interface IInterestRateService
 {
-    public interface IInterestRateService
-    {
-        Task<decimal> GetAsync(CancellationToken cancellationToken);
-    }
+    Task<decimal> GetAsync(CancellationToken cancellationToken);
 }
